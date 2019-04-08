@@ -91,7 +91,8 @@ class TodosController extends Controller
         $todo->body = $request->input('body');
         $todo->due = $request->input('due');
         $todo->save();
-        return redirect('/')->with('success', 'Todo Updated');    }
+        return redirect('/')->with('success', 'Todo Updated');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -101,6 +102,9 @@ class TodosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->delete();
+
+        return redirect('/')->with('success', 'Todo Deleted');
     }
 }
